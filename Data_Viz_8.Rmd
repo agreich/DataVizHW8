@@ -1,0 +1,43 @@
+---
+title: "Assignment 8"
+subtite: "Alex Reich's Homework"
+output: html_notebook
+---
+
+Task 1: Heat Maps
+
+
+```{r}
+library(ggplot2)
+library(wesanderson)
+library(tvthemes)
+library (tidyverse)
+library (dplyr)
+library (cowplot)
+library (viridis)
+NPGE_PDO.dat <- read.csv("/Users/alexandrareich/Desktop/DataVIzFish/Work_dir/npgo-pdo.csv")
+```
+
+Heat Map 1: Show NPGO by month and year
+```{r}
+ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=NPGO)+ scale_fill_viridis()+theme_cowplot()+geom_tile()
+```
+
+```{r}
+ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=NPGO)+ scale_fill_avatar(palette = "WaterTribe", type="continuous")+theme_avatar() +geom_tile()
+```
+
+Heat Map 2:
+```{r}
+ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=PDO)+ scale_fill_avatar(palette = "EarthKingdom", type="continuous")+theme_avatar() +geom_tile()
+```
+Heat Map 3
+```{r}
+
+```
+
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
