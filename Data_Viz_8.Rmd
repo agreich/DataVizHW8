@@ -23,18 +23,11 @@ Heat Map 1: Show NPGO by month and year
 ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=NPGO)+ scale_fill_viridis()+theme_cowplot()+geom_tile()
 ```
 
-```{r}
-ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=NPGO)+ scale_fill_avatar(palette = "FireNation", type="continuous")+theme_avatar() +geom_tile()
-```
-
 Heat Map 2:
 ```{r}
 ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=PDO)+ scale_fill_viridis()+theme_classic() +geom_tile()
 ```
 
-```{r}
-ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=PDO)+ scale_fill_avatar(palette = "EarthKingdom", type="continuous")+theme_avatar() +geom_tile()
-```
 Heat Map 3
 ```{r}
 #need a new variable
@@ -44,18 +37,40 @@ PDO <- NPGE_PDO.dat$PDO
 newV <- PDO/NPGO
 newV2 <-NPGO/PDO
 
-ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=newV)+ scale_fill_avatar(palette = "AirNomads", type="continuous")+theme_avatar() +geom_tile()
 ```
 ```{r}
 ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=newV)+ scale_fill_viridis()+theme_cowplot() +geom_tile()
 ```
-1.3
+Heat Map 3:
 ```{r}
 ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=newV2)+ scale_fill_viridis()+theme_cowplot() +geom_tile()
 ```
-
 2)
 Around 1977 and 1989 the NPDO spikes. After 1989 which the NPDO dips. The PDO starts to rise around 1977 and declines around 1989.
 
+
+TASK 2: Plotting multiple proportions
+```{r}
+#faceting with color, maybe?
+#load the data
+NARW.data<- read.csv("/Users/alexandrareich/Desktop/DataVIzFish/Work_dir/NARW_mort.csv")
+```
+
+```{r}
+#plot
+ggplot(data=NARW.data) +aes (x=Year, y=Country, fill=Sex,)+ geom_tile()+facet_wrap(~Year) + 
+```
+
+```{r}
+ggplot(data=NARW.data) +aes (x=CauseDeath, fill=Country, shape=Sex)+ geom_dotplot(binwidth = 1)+facet_wrap(~Year) + scale_fill_avatar(palette="AirNomads")+theme_classic()
+```
+nice try , but not perfect
+```{r}
+ggplot(data=NARW.data) +aes (x=CauseDeath, fill=Country)+ geom_bar(position=position_dodge())+facet_wrap(~Year) + scale_fill_avatar(palette="AirNomads")+theme_classic()
+```
+almost
+```{r}
+ggplot(data=NARW.data) +aes (x=CauseDeath, fill=Country)+ geom_bar(position=position_dodge())+facet_grid(vars(Sex),vars(Year)) + scale_fill_avatar(palette="AirNomads")+theme_classic()
+```
 
 
