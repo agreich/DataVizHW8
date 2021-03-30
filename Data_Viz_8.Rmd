@@ -24,20 +24,38 @@ ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=NPGO)+ scale_fill_viridis()
 ```
 
 ```{r}
-ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=NPGO)+ scale_fill_avatar(palette = "WaterTribe", type="continuous")+theme_avatar() +geom_tile()
+ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=NPGO)+ scale_fill_avatar(palette = "FireNation", type="continuous")+theme_avatar() +geom_tile()
 ```
 
 Heat Map 2:
+```{r}
+ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=PDO)+ scale_fill_viridis()+theme_classic() +geom_tile()
+```
+
 ```{r}
 ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=PDO)+ scale_fill_avatar(palette = "EarthKingdom", type="continuous")+theme_avatar() +geom_tile()
 ```
 Heat Map 3
 ```{r}
+#need a new variable
+NPGO <- NPGE_PDO.dat$NPGO
+PDO <- NPGE_PDO.dat$PDO
 
+newV <- PDO/NPGO
+newV2 <-NPGO/PDO
+
+ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=newV)+ scale_fill_avatar(palette = "AirNomads", type="continuous")+theme_avatar() +geom_tile()
+```
+```{r}
+ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=newV)+ scale_fill_viridis()+theme_cowplot() +geom_tile()
+```
+1.3
+```{r}
+ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=newV2)+ scale_fill_viridis()+theme_cowplot() +geom_tile()
 ```
 
+2)
+Around 1977 and 1989 the NPDO spikes. After 1989 which the NPDO dips. The PDO starts to rise around 1977 and declines around 1989.
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
 
