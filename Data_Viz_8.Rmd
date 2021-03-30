@@ -62,7 +62,7 @@ ggplot(data=NARW.data) +aes (x=Year, y=Country, fill=Sex,)+ geom_tile()+facet_wr
 ```
 
 ```{r}
-ggplot(data=NARW.data) +aes (x=CauseDeath, fill=Country, shape=Sex)+ geom_dotplot(binwidth = 1)+facet_wrap(~Year) + scale_fill_avatar(palette="AirNomads")+theme_classic()
+ggplot(data=NARW.data) +aes (x=CauseDeath, fill=Country)+ geom_dotplot(dotsize=7) +facet_grid(vars(Sex),vars(Year)) + scale_fill_avatar(palette="AirNomads")+theme_bw()
 ```
 nice try , but not perfect
 ```{r}
@@ -70,7 +70,16 @@ ggplot(data=NARW.data) +aes (x=CauseDeath, fill=Country)+ geom_bar(position=posi
 ```
 almost
 ```{r}
-ggplot(data=NARW.data) +aes (x=CauseDeath, fill=Country)+ geom_bar(position=position_dodge())+facet_grid(vars(Sex),vars(Year)) + scale_fill_avatar(palette="AirNomads")+theme_classic()
+ggplot(data=NARW.data) +aes (x=CauseDeath, fill=Country)+ geom_bar(position=position_dodge2())+facet_grid(vars(Sex),vars(Year)) + scale_fill_avatar(palette="AirNomads")+theme_bw()
 ```
+again:
 
+```{r}
+ggplot(data=NARW.data) +aes(x=CauseDeath, fill=Country)+ geom_bar()+facet_grid(vars(Year),vars(Sex)) + scale_fill_avatar(palette="AirNomads")+theme_bw() +coord_flip()
+```
+almost
+```{r}
+ggplot(data=NARW.data) +aes(x=CauseDeath, fill=Country)+ geom_bar()+facet_grid(vars(Sex),vars(Year)) + scale_fill_avatar(palette="AirNomads")+theme_bw()
+#THIS ONE IS GOOD!
+```
 
