@@ -79,7 +79,7 @@ ggplot(data=NARW.data) +aes(x=CauseDeath, fill=Country)+ geom_bar()+facet_grid(v
 ```
 almost
 ```{r}
-ggplot(data=NARW.data) +aes(x=CauseDeath, fill=Country)+ geom_bar()+facet_grid(vars(Sex),vars(Year)) + scale_fill_avatar(palette="AirNomads")+theme_bw()
+ggplot(data=NARW.data) +aes(x=CauseDeath, fill=Country)+ geom_bar()+facet_grid(vars(Sex),vars(Year)) + scale_fill_manual(values=c("#0072B2","#E69F00"))+theme_bw()
 #THIS ONE IS GOOD!
 ```
 
