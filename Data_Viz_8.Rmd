@@ -36,17 +36,19 @@ PDO <- NPGE_PDO.dat$PDO
 
 newV <- PDO/NPGO
 newV2 <-NPGO/PDO
+newV3 <- NPGO-PDO
+newV4 <- PDO-NPGO
 
 ```
 ```{r}
-ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=newV)+ scale_fill_viridis()+theme_cowplot() +geom_tile()
+ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=newV3)+ scale_fill_viridis()+theme_cowplot() +geom_tile()
 ```
 Heat Map 3:
 ```{r}
-ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=newV2)+ scale_fill_viridis()+theme_cowplot() +geom_tile()
+ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=newV4)+ scale_fill_viridis()+theme_cowplot() +geom_tile()
 ```
 2)
-Around 1977 and 1989 the NPDO spikes. After 1989 which the NPDO dips. The PDO starts to rise around 1977 and declines around 1989.
+Around 1977 and 1989 the NPDO spikes. After 1989 the NPDO dips. The PDO starts to rise around 1977 and declines around 1989.
 
 
 TASK 2: Plotting multiple proportions
