@@ -1,6 +1,6 @@
 ---
 title: "Assignment 8"
-subtite: "Alex Reich's Homework"
+subtitle: "Alex Reich's Homework"
 output: html_notebook
 ---
 
@@ -9,8 +9,6 @@ Task 1: Heat Maps
 
 ```{r}
 library(ggplot2)
-library(wesanderson)
-library(tvthemes)
 library (tidyverse)
 library (dplyr)
 library (cowplot)
@@ -19,7 +17,7 @@ NPGE_PDO.dat <- read.csv("/Users/alexandrareich/Desktop/DataVIzFish/Work_dir/npg
 NPGE_PDO.dat <- NPGE_PDO.dat[NPGE_PDO.dat$Year < 2018,]
 ```
 
-Heat Map 1: Show NPGO by month and year
+Heat Map 1:
 ```{r}
 ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=NPGO)+ scale_fill_viridis()+theme_cowplot()+geom_tile()
 ```
@@ -29,7 +27,7 @@ Heat Map 2:
 ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=PDO)+ scale_fill_viridis()+theme_cowplot() +geom_tile()
 ```
 
-Heat Map 3
+Heat Map 3:
 ```{r}
 #need a new variable
 NPGO <- NPGE_PDO.dat$NPGO
@@ -43,8 +41,7 @@ newV4 <- PDO-NPGO
 ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=newV3)+ scale_fill_viridis()+theme_cowplot() +geom_tile()
 ```
 
-2)
-Around 1977 and 1989 the NPDO spikes, seen in Heat Map 1. After 1989 the NPDO dips. In Heat Map 2 the PDO starts to rise around 1977 and declines around 1989. In Heat Map 3, the difference between NPGO and PDO is mostly negative values between 1977 and 1989
+2)Around 1977 and 1989 the NPDO spikes, seen in Heat Map 1. After 1989 the NPDO dips. In Heat Map 2 the PDO starts to rise around 1977 and declines around 1989. In Heat Map 3, the difference between NPGO and PDO is mostly negative between 1977 and 1989.
 
 
 TASK 2: Plotting multiple proportions
@@ -54,30 +51,9 @@ TASK 2: Plotting multiple proportions
 NARW.data<- read.csv("/Users/alexandrareich/Desktop/DataVIzFish/Work_dir/NARW_mort.csv")
 ```
 
-```{r}
-#plot
-ggplot(data=NARW.data) +aes (x=Year, y=Country, fill=Sex,)+ geom_tile()+facet_wrap(~Year) + 
-```
 
 ```{r}
-ggplot(data=NARW.data) +aes (x=CauseDeath, fill=Country)+ geom_dotplot(dotsize=7) +facet_grid(vars(Sex),vars(Year)) + scale_fill_avatar(palette="AirNomads")+theme_bw()
-```
-nice try , but not perfect
-```{r}
-ggplot(data=NARW.data) +aes (x=CauseDeath, fill=Country)+ geom_bar(position=position_dodge())+facet_wrap(~Year) + scale_fill_avatar(palette="AirNomads")+theme_classic()
-```
-almost
-```{r}
-ggplot(data=NARW.data) +aes (x=CauseDeath, fill=Country)+ geom_bar(position=position_dodge2())+facet_grid(vars(Sex),vars(Year)) + scale_fill_avatar(palette="AirNomads")+theme_bw()
-```
-again:
-
-```{r}
-ggplot(data=NARW.data) +aes(x=CauseDeath, fill=Country)+ geom_bar()+facet_grid(vars(Year),vars(Sex)) + scale_fill_avatar(palette="AirNomads")+theme_bw() +coord_flip()
-```
-almost
-```{r}
-ggplot(data=NARW.data) +aes(x=CauseDeath, fill=Country)+ geom_bar()+facet_grid(vars(Sex),vars(Year)) + scale_fill_manual(values=c("#0072B2","#E69F00"))+theme_bw()
+ggplot(data=NARW.data) +aes(x=CauseDeath, fill=Country)+ geom_bar()+facet_grid(vars(Sex),vars(Year)) + scale_fill_manual(values=c("#0072B2","#E69F00"))+theme_bw()+ylab("Count")+xlab("Cause of Death")
 #THIS ONE IS GOOD!
 ```
 
