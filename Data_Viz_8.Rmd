@@ -16,6 +16,7 @@ library (dplyr)
 library (cowplot)
 library (viridis)
 NPGE_PDO.dat <- read.csv("/Users/alexandrareich/Desktop/DataVIzFish/Work_dir/npgo-pdo.csv")
+NPGE_PDO.dat <- NPGE_PDO.dat[NPGE_PDO.dat$Year < 2018,]
 ```
 
 Heat Map 1: Show NPGO by month and year
@@ -25,7 +26,7 @@ ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=NPGO)+ scale_fill_viridis()
 
 Heat Map 2:
 ```{r}
-ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=PDO)+ scale_fill_viridis()+theme_classic() +geom_tile()
+ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=PDO)+ scale_fill_viridis()+theme_cowplot() +geom_tile()
 ```
 
 Heat Map 3
@@ -34,8 +35,6 @@ Heat Map 3
 NPGO <- NPGE_PDO.dat$NPGO
 PDO <- NPGE_PDO.dat$PDO
 
-newV <- PDO/NPGO
-newV2 <-NPGO/PDO
 newV3 <- NPGO-PDO
 newV4 <- PDO-NPGO
 
@@ -43,12 +42,9 @@ newV4 <- PDO-NPGO
 ```{r}
 ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=newV3)+ scale_fill_viridis()+theme_cowplot() +geom_tile()
 ```
-Heat Map 3:
-```{r}
-ggplot(data=NPGE_PDO.dat)+aes(x= Year,  y= Mon, fill=newV4)+ scale_fill_viridis()+theme_cowplot() +geom_tile()
-```
+
 2)
-Around 1977 and 1989 the NPDO spikes. After 1989 the NPDO dips. The PDO starts to rise around 1977 and declines around 1989.
+Around 1977 and 1989 the NPDO spikes, seen in Heat Map 1. After 1989 the NPDO dips. In Heat Map 2 the PDO starts to rise around 1977 and declines around 1989. In Heat Map 3, the difference between NPGO and PDO is mostly negative values between 1977 and 1989
 
 
 TASK 2: Plotting multiple proportions
